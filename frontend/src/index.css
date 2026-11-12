@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #1b1740;
+  --color-navy: #4f46e5;   /* indigo, main accent */
+  --color-maroon: #e11d48; /* rose, warning / impact accent */
+  --color-paper: #f6f4ff;
+  --color-line: #e3ddf6;
+  --color-mist: #efeafd;
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+.dotgrid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* numbered reading list with coloured badges */
+.steps ol {
+  counter-reset: s;
+  list-style: none;
+  padding: 0;
+}
+.steps li {
+  counter-increment: s;
+  position: relative;
+  padding-left: 2.9rem;
+  margin-bottom: 1.1rem;
+}
+.steps li::before {
+  content: counter(s);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  box-shadow: 0 6px 14px -6px rgba(236, 72, 153, 0.7);
+}
+.steps li:nth-child(4n + 2)::before { background: linear-gradient(135deg, #0ea5e9, #6366f1); }
+.steps li:nth-child(4n + 3)::before { background: linear-gradient(135deg, #14b8a6, #0ea5e9); }
+.steps li:nth-child(4n + 4)::before { background: linear-gradient(135deg, #f97316, #ec4899); }
+
+:focus-visible {
+  outline: 2px solid #ec4899;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
